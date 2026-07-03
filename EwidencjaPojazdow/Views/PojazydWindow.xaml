@@ -1,0 +1,103 @@
+<Window x:Class="EwidencjaPojazdow.Views.PojazydWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Pojazdy" Height="620" Width="950"
+        WindowStartupLocation="CenterScreen" Background="#F0F4F8">
+
+    <Window.Resources>
+        <Style x:Key="ActionBtn" TargetType="Button">
+            <Setter Property="Height" Value="34"/><Setter Property="Width" Value="100"/>
+            <Setter Property="Foreground" Value="White"/><Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/><Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Margin" Value="4,0"/>
+            <Setter Property="Template">
+                <Setter.Value><ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" CornerRadius="5">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border></ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="Label"><Setter Property="Foreground" Value="#37474F"/><Setter Property="FontWeight" Value="SemiBold"/><Setter Property="Padding" Value="0,4"/></Style>
+        <Style TargetType="TextBox"><Setter Property="Padding" Value="6,4"/><Setter Property="BorderBrush" Value="#B0BEC5"/><Setter Property="BorderThickness" Value="1"/><Setter Property="FontSize" Value="13"/></Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="55"/><RowDefinition Height="*"/><RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/><ColumnDefinition Width="300"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Row="0" Grid.ColumnSpan="2" Background="#6A1B9A">
+            <TextBlock Text="🚘  Pojazdy" FontSize="20" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" Margin="20,0"/>
+        </Border>
+
+        <Grid Grid.Row="1" Grid.Column="0" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,8">
+                <TextBlock Text="Szukaj:" VerticalAlignment="Center" Margin="0,0,6,0" FontWeight="SemiBold" Foreground="#37474F"/>
+                <TextBox x:Name="TxtSearch" Width="200" TextChanged="TxtSearch_TextChanged"/>
+            </StackPanel>
+            <DataGrid Grid.Row="1" x:Name="DgPojazdy" AutoGenerateColumns="False" IsReadOnly="True"
+                      ItemsSource="{Binding Rekordy}"
+                      SelectedItem="{Binding Wybrany, Mode=TwoWay}"
+                      SelectionChanged="Dg_SelectionChanged" GridLinesVisibility="Horizontal"
+                      AlternatingRowBackground="#F3E5F5" HeadersVisibility="Column"
+                      CanUserResizeRows="False" SelectionMode="Single" BorderBrush="#B0BEC5" BorderThickness="1">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Numer VIN" Binding="{Binding NumerVIN}" Width="180"/>
+                    <DataGridTextColumn Header="Marka" Binding="{Binding Marka}" Width="110"/>
+                    <DataGridTextColumn Header="Model" Binding="{Binding Model}" Width="110"/>
+                    <DataGridTextColumn Header="Rok produkcji" Binding="{Binding RokProdukcji}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,8,0,0">
+                <Button Content="➕ Dodaj" Background="#6A1B9A" Style="{StaticResource ActionBtn}" Click="BtnDodaj_Click"/>
+                <Button Content="✏️ Edytuj" Background="#1565C0" Style="{StaticResource ActionBtn}" Click="BtnEdytuj_Click"/>
+                <Button Content="🗑️ Usuń" Background="#C62828" Style="{StaticResource ActionBtn}" Click="BtnUsun_Click"/>
+                <Button Content="🔄 Odśwież" Background="#546E7A" Style="{StaticResource ActionBtn}" Click="BtnOdswierz_Click"/>
+            </StackPanel>
+        </Grid>
+
+        <Border Grid.Row="1" Grid.Column="1" Margin="0,10,10,10" Background="White" BorderBrush="#B0BEC5" BorderThickness="1">
+            <Grid Margin="15">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/><RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/><RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/><RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/><RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="Dane pojazdu" FontSize="14" FontWeight="Bold" Foreground="#6A1B9A" Margin="0,0,0,12"/>
+                <Label Grid.Row="1" Content="Numer VIN (17 znaków):"/>
+                <TextBox Grid.Row="2" x:Name="TxtVIN" Margin="0,0,0,8" MaxLength="17"
+                         Text="{Binding NumerVIN, UpdateSourceTrigger=PropertyChanged}"
+                         IsEnabled="{Binding VINEnabled}"/>
+                <Label Grid.Row="3" Content="Marka:"/>
+                <TextBox Grid.Row="4" x:Name="TxtMarka" Margin="0,0,0,8"
+                         Text="{Binding Marka, UpdateSourceTrigger=PropertyChanged}"/>
+                <Label Grid.Row="5" Content="Model:"/>
+                <TextBox Grid.Row="6" x:Name="TxtModel" Margin="0,0,0,8"
+                         Text="{Binding Model, UpdateSourceTrigger=PropertyChanged}"/>
+                <Label Grid.Row="7" Content="Rok produkcji:"/>
+                <TextBox Grid.Row="8" x:Name="TxtRok" Margin="0,0,0,8"
+                         Text="{Binding RokProdukcji, UpdateSourceTrigger=PropertyChanged}"/>
+                <StackPanel Grid.Row="9" VerticalAlignment="Bottom">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Content="Zapisz" Background="#6A1B9A" Style="{StaticResource ActionBtn}" Width="80" Click="BtnZapisz_Click"/>
+                        <Button Content="Wyczyść" Background="#78909C" Style="{StaticResource ActionBtn}" Width="80" Click="BtnWyczysc_Click"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="2" Grid.ColumnSpan="2" Background="#6A1B9A">
+            <TextBlock x:Name="StatusBar" Text="{Binding StatusBar}" Foreground="White" VerticalAlignment="Center" Margin="10,0" FontSize="11"/>
+        </Border>
+    </Grid>
+</Window>

@@ -1,0 +1,39 @@
+<Window x:Class="EwidencjaPojazdow.Views.ConnectionStringWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Ustawienia połączenia" Height="280" Width="450"
+        WindowStartupLocation="CenterOwner" ResizeMode="NoResize"
+        Background="#F0F4F8">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Ustawienia połączenia z SQL Server" 
+                   FontSize="14" FontWeight="Bold" Foreground="#1E3A5F" Margin="0,0,0,15"/>
+
+        <TextBlock Grid.Row="1" Text="Serwer (np. localhost lub .\SQLEXPRESS):" 
+                   Foreground="#37474F" Margin="0,0,0,4"/>
+        <TextBox Grid.Row="2" x:Name="TxtServer" Padding="6" Margin="0,0,0,10"
+                 Text="localhost" FontSize="13"/>
+
+        <TextBlock Grid.Row="3" Text="Nazwa bazy danych:" Foreground="#37474F" Margin="0,0,0,4"/>
+        <TextBox Grid.Row="4" x:Name="TxtDatabase" Padding="6"
+                 Text="EwidencjaPojazdowDB" FontSize="13"/>
+
+        <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,15,0,0">
+            <Button Content="Anuluj" Width="90" Height="34" Margin="0,0,8,0"
+                    Background="#B0BEC5" Foreground="White" BorderThickness="0"
+                    Cursor="Hand" Click="BtnCancel_Click"/>
+            <Button Content="Połącz" Width="90" Height="34"
+                    Background="#1565C0" Foreground="White" BorderThickness="0"
+                    Cursor="Hand" Click="BtnConnect_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,148 @@
+<Window x:Class="EwidencjaPojazdow.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Ewidencja Pojazdów" Height="600" Width="900"
+        WindowStartupLocation="CenterScreen"
+        Background="#F0F4F8">
+
+    <Window.Resources>
+        <Style x:Key="NavButton" TargetType="Button">
+            <Setter Property="Height" Value="70"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="8">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" Value="0.85"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Opacity" Value="0.7"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="35"/>
+        </Grid.RowDefinitions>
+
+        <!-- Nagłówek -->
+        <Border Grid.Row="0" Background="#1E3A5F">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="20,0">
+                <TextBlock Text="🚗" FontSize="28" VerticalAlignment="Center" Margin="0,0,12,0"/>
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Text="Ewidencja Pojazdów" FontSize="22" FontWeight="Bold" 
+                               Foreground="White"/>
+                    <TextBlock Text="System zarządzania bazą danych" FontSize="11" 
+                               Foreground="#90CAF9"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="40,0,0,0" VerticalAlignment="Center">
+                    <Ellipse x:Name="StatusDot" Width="10" Height="10" Margin="0,0,6,0"/>
+                    <TextBlock x:Name="StatusText" FontSize="11" Foreground="#90CAF9" VerticalAlignment="Center"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <!-- Główna treść -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="20">
+
+                <TextBlock Text="Wybierz tabelę do zarządzania:" FontSize="16" 
+                           FontWeight="SemiBold" Foreground="#1E3A5F" Margin="0,10,0,15"/>
+
+                <UniformGrid Columns="2" Rows="3">
+
+                    <Button x:Name="BtnKierowcy" Style="{StaticResource NavButton}"
+                            Background="#1565C0" Click="BtnKierowcy_Click">
+                        <StackPanel HorizontalAlignment="Center">
+                            <TextBlock Text="👤" FontSize="22" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Kierowcy / Właściciele" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button x:Name="BtnPrawaJazdy" Style="{StaticResource NavButton}"
+                            Background="#2E7D32" Click="BtnPrawaJazdy_Click">
+                        <StackPanel HorizontalAlignment="Center">
+                            <TextBlock Text="📋" FontSize="22" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Prawa Jazdy" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button x:Name="BtnPojazdy" Style="{StaticResource NavButton}"
+                            Background="#6A1B9A" Click="BtnPojazdy_Click">
+                        <StackPanel HorizontalAlignment="Center">
+                            <TextBlock Text="🚘" FontSize="22" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Pojazdy" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button x:Name="BtnRejestracje" Style="{StaticResource NavButton}"
+                            Background="#E65100" Click="BtnRejestracje_Click">
+                        <StackPanel HorizontalAlignment="Center">
+                            <TextBlock Text="📄" FontSize="22" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Rejestracje" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button x:Name="BtnBadania" Style="{StaticResource NavButton}"
+                            Background="#00695C" Click="BtnBadania_Click">
+                        <StackPanel HorizontalAlignment="Center">
+                            <TextBlock Text="🔧" FontSize="22" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Badania Techniczne" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button x:Name="BtnPolisy" Style="{StaticResource NavButton}"
+                            Background="#AD1457" Click="BtnPolisy_Click">
+                        <StackPanel HorizontalAlignment="Center">
+                            <TextBlock Text="🛡️" FontSize="22" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Polisy OC" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                </UniformGrid>
+
+                <!-- Raport zbiorczy -->
+                <Button x:Name="BtnRaport" Height="50" Margin="5,10,5,0"
+                        Background="#37474F" Foreground="White" FontSize="14"
+                        FontWeight="SemiBold" BorderThickness="0" Cursor="Hand"
+                        Click="BtnRaport_Click">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}" CornerRadius="8">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="📊  " FontSize="18" VerticalAlignment="Center"/>
+                        <TextBlock Text="Raport zbiorczy pojazdów (widok VW_ZintegrowanyRaportPojazdu)" 
+                                   VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Pasek stanu -->
+        <Border Grid.Row="2" Background="#1E3A5F">
+            <TextBlock x:Name="StatusBar" Text="Gotowy" Foreground="#90CAF9"
+                       VerticalAlignment="Center" Margin="15,0" FontSize="11"/>
+        </Border>
+    </Grid>
+</Window>
