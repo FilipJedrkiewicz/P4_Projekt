@@ -1,4 +1,5 @@
 using System.Windows;
+using EwidencjaPojazdow.Database;
 
 namespace EwidencjaPojazdow.Views
 {
@@ -15,6 +16,10 @@ namespace EwidencjaPojazdow.Views
         {
             ConnectionString = $"Server={TxtServer.Text};Database={TxtDatabase.Text};" +
                                "Integrated Security=True;TrustServerCertificate=True;";
+            
+            // Zapisz konfigurację do pliku cepik.cfg, aby nie wpisywać jej ponownie
+            DatabaseHelper.SaveConfig(TxtServer.Text, TxtDatabase.Text);
+            
             DialogResult = true;
         }
 

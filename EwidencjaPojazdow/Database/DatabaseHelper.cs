@@ -61,7 +61,29 @@ public static class DatabaseHelper
         }
     }
 
-    private sealed class DbConfig
+    public static void SaveConfig(string server, string database)
+    {
+        try
+        {
+            string cfgPath = Path.Combine(AppContext.BaseDirectory, "cepik.cfg");
+            var cfg = new DbConfig
+            {
+                Server = server,
+                Database = database,
+                IntegratedSecurity = true,
+                UserId = "",
+                Password = ""
+            };
+            var options = new JsonSerializerOptions { WriteIndented = true };
+            File.WriteAllText(cfgPath, JsonSerializer.Serialize(cfg, options));
+        }
+        catch
+        {
+            // Ignorujemy błędy zapisu konfiguracji
+        }
+    }
+
+    public class DbConfig
     {
         public string Server             { get; set; } = "localhost";
         public string Database           { get; set; } = "EwidencjaPojazdowDB";
@@ -70,3 +92,4 @@ public static class DatabaseHelper
         public string Password           { get; set; } = "";
     }
 }
+
