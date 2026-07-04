@@ -48,7 +48,7 @@
         </DataGrid>
 
         <Border Grid.Row="3" Background="#37474F">
-            <TextBlock x:Name="StatusBar" Text="{Binding StatusBar}" Foreground="White" VerticalAlignment="Center" Margin="10,0" FontSize="11"/>
+            <TextBlock x:Name="StatusBar" Text="Gotowy" Foreground="White" VerticalAlignment="Center" Margin="10,0" FontSize="11"/>
         </Border>
     </Grid>
 </Window>

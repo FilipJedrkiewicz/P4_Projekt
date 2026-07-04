@@ -43,8 +43,6 @@
                 <TextBox x:Name="TxtSearch" Width="200" TextChanged="TxtSearch_TextChanged"/>
             </StackPanel>
             <DataGrid Grid.Row="1" x:Name="DgPojazdy" AutoGenerateColumns="False" IsReadOnly="True"
-                      ItemsSource="{Binding Rekordy}"
-                      SelectedItem="{Binding Wybrany, Mode=TwoWay}"
                       SelectionChanged="Dg_SelectionChanged" GridLinesVisibility="Horizontal"
                       AlternatingRowBackground="#F3E5F5" HeadersVisibility="Column"
                       CanUserResizeRows="False" SelectionMode="Single" BorderBrush="#B0BEC5" BorderThickness="1">
@@ -75,18 +73,13 @@
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0" Text="Dane pojazdu" FontSize="14" FontWeight="Bold" Foreground="#6A1B9A" Margin="0,0,0,12"/>
                 <Label Grid.Row="1" Content="Numer VIN (17 znaków):"/>
-                <TextBox Grid.Row="2" x:Name="TxtVIN" Margin="0,0,0,8" MaxLength="17"
-                         Text="{Binding NumerVIN, UpdateSourceTrigger=PropertyChanged}"
-                         IsEnabled="{Binding VINEnabled}"/>
+                <TextBox Grid.Row="2" x:Name="TxtVIN" Margin="0,0,0,8" MaxLength="17"/>
                 <Label Grid.Row="3" Content="Marka:"/>
-                <TextBox Grid.Row="4" x:Name="TxtMarka" Margin="0,0,0,8"
-                         Text="{Binding Marka, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox Grid.Row="4" x:Name="TxtMarka" Margin="0,0,0,8"/>
                 <Label Grid.Row="5" Content="Model:"/>
-                <TextBox Grid.Row="6" x:Name="TxtModel" Margin="0,0,0,8"
-                         Text="{Binding Model, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox Grid.Row="6" x:Name="TxtModel" Margin="0,0,0,8"/>
                 <Label Grid.Row="7" Content="Rok produkcji:"/>
-                <TextBox Grid.Row="8" x:Name="TxtRok" Margin="0,0,0,8"
-                         Text="{Binding RokProdukcji, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox Grid.Row="8" x:Name="TxtRok" Margin="0,0,0,8"/>
                 <StackPanel Grid.Row="9" VerticalAlignment="Bottom">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                         <Button Content="Zapisz" Background="#6A1B9A" Style="{StaticResource ActionBtn}" Width="80" Click="BtnZapisz_Click"/>
@@ -97,7 +90,7 @@
         </Border>
 
         <Border Grid.Row="2" Grid.ColumnSpan="2" Background="#6A1B9A">
-            <TextBlock x:Name="StatusBar" Text="{Binding StatusBar}" Foreground="White" VerticalAlignment="Center" Margin="10,0" FontSize="11"/>
+            <TextBlock x:Name="StatusBar" Text="Gotowy" Foreground="White" VerticalAlignment="Center" Margin="10,0" FontSize="11"/>
         </Border>
     </Grid>
 </Window>

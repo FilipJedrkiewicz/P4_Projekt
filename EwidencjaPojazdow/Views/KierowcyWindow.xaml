@@ -70,8 +70,6 @@
 
             <DataGrid Grid.Row="1" x:Name="DgKierowcy"
                       AutoGenerateColumns="False" IsReadOnly="True"
-                      ItemsSource="{Binding Rekordy}"
-                      SelectedItem="{Binding Wybrany, Mode=TwoWay}"
                       SelectionChanged="DgKierowcy_SelectionChanged"
                       GridLinesVisibility="Horizontal"
                       AlternatingRowBackground="#EBF5FB"
@@ -117,27 +115,21 @@
                            Foreground="#1565C0" Margin="0,0,0,12"/>
 
                 <Label Grid.Row="1" Content="PESEL:"/>
-                <TextBox Grid.Row="2" x:Name="TxtPESEL" Margin="0,0,0,8"
-                         Text="{Binding PESEL, UpdateSourceTrigger=PropertyChanged}"
-                         IsEnabled="{Binding PeselEnabled}"/>
+                <TextBox Grid.Row="2" x:Name="TxtPESEL" Margin="0,0,0,8"/>
 
                 <Label Grid.Row="3" Content="Imię:"/>
-                <TextBox Grid.Row="4" x:Name="TxtImie" Margin="0,0,0,8"
-                         Text="{Binding Imie, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox Grid.Row="4" x:Name="TxtImie" Margin="0,0,0,8"/>
 
                 <Label Grid.Row="5" Content="Nazwisko:"/>
-                <TextBox Grid.Row="6" x:Name="TxtNazwisko" Margin="0,0,0,8"
-                         Text="{Binding Nazwisko, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox Grid.Row="6" x:Name="TxtNazwisko" Margin="0,0,0,8"/>
 
                 <Label Grid.Row="7" Content="Miejscowość:"/>
                 <TextBox x:Name="TxtMiejscowosc" Margin="0,4,0,8"
-                         Grid.Row="8" VerticalAlignment="Top" Height="28"
-                         Text="{Binding Miejscowosc, UpdateSourceTrigger=PropertyChanged}"/>
+                         Grid.Row="8" VerticalAlignment="Top" Height="28"/>
 
                 <StackPanel Grid.Row="9" Margin="0,4,0,0">
                     <Label Content="Data urodzenia:"/>
-                    <DatePicker x:Name="DpDataUrodzenia" Margin="0,0,0,12" SelectedDateFormat="Short"
-                                SelectedDate="{Binding DataUrodzenia, Mode=TwoWay}"/>
+                    <DatePicker x:Name="DpDataUrodzenia" Margin="0,0,0,12" SelectedDateFormat="Short"/>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                         <Button Content="Zapisz" Background="#2E7D32" Style="{StaticResource ActionBtn}" 
                                 Width="80" Click="BtnZapisz_Click"/>
@@ -150,7 +142,7 @@
 
         <!-- Pasek stanu -->
         <Border Grid.Row="2" Grid.ColumnSpan="2" Background="#1565C0">
-            <TextBlock x:Name="StatusBar" Text="{Binding StatusBar}" Foreground="White"
+            <TextBlock x:Name="StatusBar" Text="Gotowy" Foreground="White"
                        VerticalAlignment="Center" Margin="10,0" FontSize="11"/>
         </Border>
     </Grid>

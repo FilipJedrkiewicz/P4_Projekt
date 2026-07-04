@@ -53,8 +53,6 @@
             </StackPanel>
 
             <DataGrid Grid.Row="1" x:Name="DgPrawaJazdy" AutoGenerateColumns="False" IsReadOnly="True"
-                      ItemsSource="{Binding Rekordy}"
-                      SelectedItem="{Binding Wybrany, Mode=TwoWay}"
                       SelectionChanged="Dg_SelectionChanged" GridLinesVisibility="Horizontal"
                       AlternatingRowBackground="#EAFAF1" HeadersVisibility="Column"
                       CanUserResizeRows="False" SelectionMode="Single" BorderBrush="#B0BEC5" BorderThickness="1">
@@ -88,18 +86,13 @@
 
                 <TextBlock Grid.Row="0" Text="Dane prawa jazdy" FontSize="14" FontWeight="Bold" Foreground="#2E7D32" Margin="0,0,0,12"/>
                 <Label Grid.Row="1" Content="Nr druku:"/>
-                <TextBox Grid.Row="2" x:Name="TxtNumerDruku" Margin="0,0,0,8"
-                         Text="{Binding NumerDruku, UpdateSourceTrigger=PropertyChanged}"
-                         IsEnabled="{Binding NumerDrukuEnabled}"/>
+                <TextBox Grid.Row="2" x:Name="TxtNumerDruku" Margin="0,0,0,8"/>
                 <Label Grid.Row="3" Content="Kategorie (np. B, A,B):"/>
-                <TextBox Grid.Row="4" x:Name="TxtKategorie" Margin="0,0,0,8"
-                         Text="{Binding Kategorie, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox Grid.Row="4" x:Name="TxtKategorie" Margin="0,0,0,8"/>
                 <Label Grid.Row="5" Content="Data wydania:"/>
-                <DatePicker Grid.Row="6" x:Name="DpDataWydania" Margin="0,0,0,8" SelectedDateFormat="Short"
-                            SelectedDate="{Binding DataWydania, Mode=TwoWay}"/>
+                <DatePicker Grid.Row="6" x:Name="DpDataWydania" Margin="0,0,0,8" SelectedDateFormat="Short"/>
                 <Label Grid.Row="7" Content="PESEL właściciela:"/>
-                <TextBox Grid.Row="8" x:Name="TxtPESEL" Margin="0,0,0,8"
-                         Text="{Binding PESEL, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox Grid.Row="8" x:Name="TxtPESEL" Margin="0,0,0,8"/>
 
                 <StackPanel Grid.Row="9" VerticalAlignment="Bottom">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
@@ -111,7 +104,7 @@
         </Border>
 
         <Border Grid.Row="2" Grid.ColumnSpan="2" Background="#2E7D32">
-            <TextBlock x:Name="StatusBar" Text="{Binding StatusBar}" Foreground="White" VerticalAlignment="Center" Margin="10,0" FontSize="11"/>
+            <TextBlock x:Name="StatusBar" Text="Gotowy" Foreground="White" VerticalAlignment="Center" Margin="10,0" FontSize="11"/>
         </Border>
     </Grid>
 </Window>

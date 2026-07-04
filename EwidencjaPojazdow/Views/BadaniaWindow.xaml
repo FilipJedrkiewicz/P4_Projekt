@@ -43,8 +43,6 @@
                 <TextBox x:Name="TxtSearch" Width="200" TextChanged="TxtSearch_TextChanged"/>
             </StackPanel>
             <DataGrid Grid.Row="1" x:Name="DgBadania" AutoGenerateColumns="False" IsReadOnly="True"
-                      ItemsSource="{Binding Rekordy}"
-                      SelectedItem="{Binding Wybrany, Mode=TwoWay}"
                       SelectionChanged="Dg_SelectionChanged" GridLinesVisibility="Horizontal"
                       AlternatingRowBackground="#E0F2F1" HeadersVisibility="Column"
                       CanUserResizeRows="False" SelectionMode="Single" BorderBrush="#B0BEC5" BorderThickness="1">
@@ -75,21 +73,16 @@
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0" Text="Dane badania" FontSize="14" FontWeight="Bold" Foreground="#00695C" Margin="0,0,0,12"/>
                 <Label Grid.Row="1" Content="Nr zaświadczenia:"/>
-                <TextBox Grid.Row="2" x:Name="TxtNrZasw" Margin="0,0,0,8"
-                         Text="{Binding NrZaswiadczenia, UpdateSourceTrigger=PropertyChanged}"
-                         IsEnabled="{Binding NrZaswiadczeniaEnabled}"/>
+                <TextBox Grid.Row="2" x:Name="TxtNrZasw" Margin="0,0,0,8"/>
                 <Label Grid.Row="3" Content="Data badania:"/>
-                <DatePicker Grid.Row="4" x:Name="DpData" Margin="0,0,0,8" SelectedDateFormat="Short"
-                            SelectedDate="{Binding DataBadania, Mode=TwoWay}"/>
+                <DatePicker Grid.Row="4" x:Name="DpData" Margin="0,0,0,8" SelectedDateFormat="Short"/>
                 <Label Grid.Row="5" Content="Wynik:"/>
-                <ComboBox Grid.Row="6" x:Name="CbWynik" Margin="0,0,0,8"
-                          SelectedValue="{Binding Wynik, Mode=TwoWay}" SelectedValuePath="Content">
+                <ComboBox Grid.Row="6" x:Name="CbWynik" Margin="0,0,0,8">
                     <ComboBoxItem Content="Pozytywny"/>
                     <ComboBoxItem Content="Negatywny"/>
                 </ComboBox>
                 <Label Grid.Row="7" Content="Numer VIN pojazdu:"/>
-                <TextBox Grid.Row="8" x:Name="TxtVIN" Margin="0,0,0,8" MaxLength="17"
-                         Text="{Binding NumerVIN, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox Grid.Row="8" x:Name="TxtVIN" Margin="0,0,0,8" MaxLength="17"/>
                 <StackPanel Grid.Row="9" VerticalAlignment="Bottom">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                         <Button Content="Zapisz" Background="#00695C" Style="{StaticResource ActionBtn}" Width="80" Click="BtnZapisz_Click"/>
@@ -100,7 +93,7 @@
         </Border>
 
         <Border Grid.Row="2" Grid.ColumnSpan="2" Background="#00695C">
-            <TextBlock x:Name="StatusBar" Text="{Binding StatusBar}" Foreground="White" VerticalAlignment="Center" Margin="10,0" FontSize="11"/>
+            <TextBlock x:Name="StatusBar" Text="Gotowy" Foreground="White" VerticalAlignment="Center" Margin="10,0" FontSize="11"/>
         </Border>
     </Grid>
 </Window>
